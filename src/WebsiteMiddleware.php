@@ -94,14 +94,20 @@ class WebsiteMiddleware
         $this->logger->debug("Render page template…");
 
         $render    = $this->render;
-        $full_page_html = $render( $this->template, array_merge(
+
+        $vars = array_merge(
             $this->defaults, [
                 'title'    =>  $website->getTitle(),
                 'id'       =>  $website->getDomId(),
                 'base_url' =>  $request->getUri()->getBaseUrl(),
                 'content'  =>  (string) $content_response->getBody()
             ]
-        ));
+        );
+
+        $vars['javascripts'] = isset($vars['javascripts']) ? array_merge($vars['javascripts'], $website->getJavascripts());
+        $vars['stylesheets'] = isset($vars['stylesheets']) ? array_merge($vars['stylesheets'], $website->getStylesheets());
+
+        $full_page_html = $render( $this->template, $vars);
 
         $this->logger->debug("Finish page template render; write response");
 
