@@ -87,27 +87,37 @@ class WebsiteMiddleware
 
 
         // ---------------------------------------
-        // 3. After that, render 'full page' template
+        // 3. Create template variables
         // ---------------------------------------
 
-        // Output global website template
-        $this->logger->debug("Render page template…");
-
-        $render    = $this->render;
-        $full_page_html = $render( $this->template, array_merge(
+        $vars = array_merge(
             $this->defaults, [
                 'title'    =>  $website->getTitle(),
                 'id'       =>  $website->getDomId(),
                 'base_url' =>  $request->getUri()->getBaseUrl(),
                 'content'  =>  (string) $content_response->getBody()
             ]
-        ));
+        );
+
+        $vars['javascripts'] = isset($vars['javascripts']) ? array_merge($vars['javascripts'], $website->getJavascripts()) : $website->getJavascripts();
+        $vars['stylesheets'] = isset($vars['stylesheets']) ? array_merge($vars['stylesheets'], $website->getStylesheets()) : $website->getStylesheets();
+
+
+        // ---------------------------------------
+        // 5. After that, render 'full page' template
+        // ---------------------------------------
+
+        // Output global website template
+        $this->logger->debug("Render page template…");
+
+        $render    = $this->render;
+        $full_page_html = $render( $this->template, $vars);
 
         $this->logger->debug("Finish page template render; write response");
 
 
         // ---------------------------------------
-        // 4. Write response
+        // 6. Write response
         // ---------------------------------------
 
         $full_html_response_body = new ResponseBody(fopen('php://temp', 'r+'));

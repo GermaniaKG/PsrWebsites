@@ -22,6 +22,8 @@ class WebsiteMiddlewareTest extends \PHPUnit_Framework_TestCase
         $website_mock = $this->prophesize( WebsiteInterface::class );
         $website_mock->getTitle()->willReturn( "TheTitle" );
         $website_mock->getDomId()->willReturn( "dom-id" );
+        $website_mock->getJavascripts()->willReturn( array("javascript") );
+        $website_mock->getStylesheets()->willReturn( array("stylesheet") );
         $website = $website_mock->reveal();
 
 
@@ -50,6 +52,8 @@ class WebsiteMiddlewareTest extends \PHPUnit_Framework_TestCase
         $website_mock = $this->prophesize( WebsiteInterface::class );
         $website_mock->getTitle()->willReturn( "TheTitle" );
         $website_mock->getDomId()->willReturn( "dom-id" );
+        $website_mock->getJavascripts()->willReturn( array("javascript") );
+        $website_mock->getStylesheets()->willReturn( array("stylesheet") );
         $website = $website_mock->reveal();
 
         $container_mock = $this->prophesize( ContainerInterface::class );
