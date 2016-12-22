@@ -99,8 +99,13 @@ class WebsiteMiddleware
             ]
         );
 
-        $vars['javascripts'] = isset($vars['javascripts']) ? array_merge($vars['javascripts'], $website->getJavascripts()) : $website->getJavascripts();
-        $vars['stylesheets'] = isset($vars['stylesheets']) ? array_merge($vars['stylesheets'], $website->getStylesheets()) : $website->getStylesheets();
+        $vars['javascripts'] = isset($vars['javascripts'])
+        ? array_merge($vars['javascripts'], $website->getJavascripts() ?: array())
+        : ($website->getJavascripts() ?: array());
+
+        $vars['stylesheets'] = isset($vars['stylesheets'])
+        ? array_merge($vars['stylesheets'], $website->getStylesheets() ?: array())
+        : ($website->getStylesheets() ?: array());
 
 
         // ---------------------------------------
