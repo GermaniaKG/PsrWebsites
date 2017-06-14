@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c4862fa7b98f4ac5356c68a3fd66cb2e",
-    "content-hash": "1b8b6bf5ba75a6e1f213725c77e344de",
+    "hash": "0cbf477d3f590923ac77544d2fca95f9",
+    "content-hash": "1ebf9a9c382a5deaf8e33278750df077",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -40,16 +40,16 @@
         },
         {
             "name": "germania-kg/websites",
-            "version": "2.0.2",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GermaniaKG/Websites.git",
-                "reference": "884aa19d371c4a57f4d1d48c8ecdc39880e42f22"
+                "reference": "7d70d8dba9170065fae5b76e9ea6acbd4ce36118"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GermaniaKG/Websites/zipball/884aa19d371c4a57f4d1d48c8ecdc39880e42f22",
-                "reference": "884aa19d371c4a57f4d1d48c8ecdc39880e42f22",
+                "url": "https://api.github.com/repos/GermaniaKG/Websites/zipball/7d70d8dba9170065fae5b76e9ea6acbd4ce36118",
+                "reference": "7d70d8dba9170065fae5b76e9ea6acbd4ce36118",
                 "shasum": ""
             },
             "require": {
@@ -77,7 +77,7 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2016-12-22 09:37:59"
+            "time": "2017-06-14 13:03:29"
         },
         {
             "name": "nikic/fast-route",
