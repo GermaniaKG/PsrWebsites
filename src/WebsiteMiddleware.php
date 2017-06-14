@@ -116,7 +116,7 @@ class WebsiteMiddleware
         $this->logger->debug("Render page template…");
 
         $render = $this->render;
-        $full_page_html = $render( $this->template, $vars);
+        $rendered_result = $render( $this->template, $vars);
 
         $this->logger->debug("Finish page template render; write response");
 
@@ -126,7 +126,7 @@ class WebsiteMiddleware
         // ---------------------------------------
 
         $full_html_response_body = new ResponseBody(fopen('php://temp', 'r+'));
-        $full_html_response_body->write($full_page_html);
+        $full_html_response_body->write($rendered_result);
 
         return $response->withHeader('Content-Type', 'text/html')
                         ->withBody($full_html_response_body);
