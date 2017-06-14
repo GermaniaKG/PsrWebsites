@@ -86,7 +86,6 @@ class WebsiteMiddleware
         // ---------------------------------------
         $content_response = $next($request, $response);
 
-
         // ---------------------------------------
         // 3. Create template variables
         // ---------------------------------------
@@ -120,11 +119,6 @@ class WebsiteMiddleware
         $rendered_result = $render( $this->template, $vars);
 
         $this->logger->debug("Finish page template render; write response");
-
-        // Return if result is ResponseInterface
-        if ($rendered_result instanceOf Response):
-            return $rendered_result;
-        endif;
 
         // ---------------------------------------
         // 6. Write response, if it is text
