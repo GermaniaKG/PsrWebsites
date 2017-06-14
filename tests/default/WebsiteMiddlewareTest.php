@@ -73,14 +73,12 @@ class WebsiteMiddlewareTest extends \PHPUnit_Framework_TestCase
             return $response;
         };
 
-        // Setup Middleware
+        // Setup and execute Middleware SUT
         $sut = new WebsiteMiddleware($container, $render, $template, $defaults, $logger);
-
-        // Execute Middleware
         $response = $sut($request, $response, $next);
 
+        // Assertion
         $body = (string) $response->getBody();
-
         $this->assertEquals($body, $template);
     }
 
