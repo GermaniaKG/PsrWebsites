@@ -5,7 +5,7 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Slim\Http\Body as ResponseBody;
 
 class WebsiteMiddleware
@@ -71,8 +71,9 @@ class WebsiteMiddleware
         //     add as attribute to Request.
         //     The website will be available within route controllers.
         // ---------------------------------------
-        $website_factory = $this->websites;
         $current_route_name = $request->getAttribute('route')->getName();
+
+        $website_factory = $this->websites;
         $website = $website_factory->get( $current_route_name );
 
         $request = $request->withAttribute('website', $website);
@@ -84,7 +85,6 @@ class WebsiteMiddleware
         //     should be created there...
         // ---------------------------------------
         $content_response = $next($request, $response);
-
 
         // ---------------------------------------
         // 3. Create template variables
@@ -115,18 +115,17 @@ class WebsiteMiddleware
         // Output global website template
         $this->logger->debug("Render page template…");
 
-        $render    = $this->render;
-        $full_page_html = $render( $this->template, $vars);
+        $render = $this->render;
+        $rendered_result = $render( $this->template, $vars);
 
         $this->logger->debug("Finish page template render; write response");
 
-
         // ---------------------------------------
-        // 6. Write response
+        // 6. Write response, if it is text
         // ---------------------------------------
 
         $full_html_response_body = new ResponseBody(fopen('php://temp', 'r+'));
-        $full_html_response_body->write($full_page_html);
+        $full_html_response_body->write($rendered_result);
 
         return $response->withHeader('Content-Type', 'text/html')
                         ->withBody($full_html_response_body);

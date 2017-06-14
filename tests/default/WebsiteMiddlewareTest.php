@@ -4,7 +4,7 @@ namespace tests;
 use Germania\Websites\WebsiteInterface;
 use Germania\PsrWebsites\WebsiteMiddleware;
 use Psr\Log\NullLogger;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Slim\Http\Environment;
 use Slim\Http\Response;
 use Slim\Http\Request;
@@ -73,14 +73,12 @@ class WebsiteMiddlewareTest extends \PHPUnit_Framework_TestCase
             return $response;
         };
 
-        // Setup Middleware
+        // Setup and execute Middleware SUT
         $sut = new WebsiteMiddleware($container, $render, $template, $defaults, $logger);
-
-        // Execute Middelware
         $response = $sut($request, $response, $next);
 
+        // Assertion
         $body = (string) $response->getBody();
-
         $this->assertEquals($body, $template);
     }
 

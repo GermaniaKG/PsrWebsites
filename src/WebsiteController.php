@@ -6,7 +6,6 @@ use Psr\Log\NullLogger;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
-
 class WebsiteController
 {
 
