@@ -76,7 +76,7 @@ class WebsiteMiddlewareTest extends \PHPUnit_Framework_TestCase
         // Setup Middleware
         $sut = new WebsiteMiddleware($container, $render, $template, $defaults, $logger);
 
-        // Execute Middelware
+        // Execute Middleware
         $response = $sut($request, $response, $next);
 
         $body = (string) $response->getBody();
