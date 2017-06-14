@@ -115,7 +115,7 @@ class WebsiteMiddleware
         // Output global website template
         $this->logger->debug("Render page template…");
 
-        $render    = $this->render;
+        $render = $this->render;
         $full_page_html = $render( $this->template, $vars);
 
         $this->logger->debug("Finish page template render; write response");
