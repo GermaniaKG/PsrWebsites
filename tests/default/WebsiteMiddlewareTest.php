@@ -4,7 +4,7 @@ namespace tests;
 use Germania\Websites\WebsiteInterface;
 use Germania\PsrWebsites\WebsiteMiddleware;
 use Psr\Log\NullLogger;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Slim\Http\Environment;
 use Slim\Http\Response;
 use Slim\Http\Request;
