@@ -71,8 +71,9 @@ class WebsiteMiddleware
         //     add as attribute to Request.
         //     The website will be available within route controllers.
         // ---------------------------------------
-        $website_factory = $this->websites;
         $current_route_name = $request->getAttribute('route')->getName();
+
+        $website_factory = $this->websites;
         $website = $website_factory->get( $current_route_name );
 
         $request = $request->withAttribute('website', $website);
@@ -120,9 +121,13 @@ class WebsiteMiddleware
 
         $this->logger->debug("Finish page template render; write response");
 
+        // Return if result is ResponseInterface
+        if ($rendered_result instanceOf Response):
+            return $rendered_result;
+        endif;
 
         // ---------------------------------------
-        // 6. Write response
+        // 6. Write response, if it is text
         // ---------------------------------------
 
         $full_html_response_body = new ResponseBody(fopen('php://temp', 'r+'));
