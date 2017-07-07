@@ -4,7 +4,7 @@ namespace Germania\PsrWebsites;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ResponseInterface;
 
 class WebsiteController
 {
@@ -45,7 +45,7 @@ class WebsiteController
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-	public function __invoke(Request $request, Response $response, $args) {
+	public function __invoke(Request $request, ResponseInterface $response, $args) {
 
         // Shortcuts
         $logger    = $this->logger;
@@ -77,10 +77,13 @@ class WebsiteController
         // ---------------------------------------
         // 3. Write response
         // ---------------------------------------
-        $logger->debug("Finish page template…, write to response");
+        if ($content instanceOf ResponseInterface):
+            $logger->debug("Finish page template: result was ResponseInterface instance");
+            return $content;
+        endif;
+
+        $logger->debug("Finish page template: result is string, write to response");
         $response->write( $content );
         return $response;
-
-
 	}
 }
