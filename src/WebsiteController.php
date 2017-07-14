@@ -77,12 +77,17 @@ class WebsiteController
         // ---------------------------------------
         // 3. Write response
         // ---------------------------------------
+
+        $log_info = [
+            'file' => $website_content_file
+        ];
+
         if ($content instanceOf ResponseInterface):
-            $logger->debug("Finish page template: result was ResponseInterface instance");
+            $logger->debug("Finish page content: result was ResponseInterface instance", $log_info);
             return $content;
         endif;
 
-        $logger->debug("Finish page template: result is string, write to response");
+        $logger->debug("Finish page content: result is string, write to response", $log_info);
         $response->write( $content );
         return $response;
 	}
