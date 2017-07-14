@@ -110,6 +110,7 @@ class WebsiteMiddleware
 
         // ---------------------------------------
         // 5. After that, render 'full page' template
+        //    and store in new Response Body.
         // ---------------------------------------
 
         // Output global website template
@@ -120,15 +121,16 @@ class WebsiteMiddleware
 
         $this->logger->debug("Finish page template render; write response");
 
-        // ---------------------------------------
-        // 6. Write response, if it is text
-        // ---------------------------------------
-
         $full_html_response_body = new ResponseBody(fopen('php://temp', 'r+'));
         $full_html_response_body->write($rendered_result);
 
-        return $response->withHeader('Content-Type', 'text/html')
-                        ->withBody($full_html_response_body);
+
+        // ---------------------------------------
+        // 6. Replace old Response Body with new one
+        // ---------------------------------------
+
+        return $content_response->withHeader('Content-Type', 'text/html')
+                                ->withBody($full_html_response_body);
     }
 
 
