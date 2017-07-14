@@ -86,6 +86,8 @@ class WebsiteMiddleware
         // ---------------------------------------
         $content_response = $next($request, $response);
 
+        $this->logger->debug("Content response", $content_response->getHeaders());
+
         // ---------------------------------------
         // 3. Create template variables
         // ---------------------------------------
