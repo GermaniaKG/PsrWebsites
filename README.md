@@ -1,4 +1,4 @@
-#Germania\PsrWebsites
+# Germania\PsrWebsites
 
 **This package was destilled from legacy code!**   
 You better do not want it to use this in production.
@@ -8,20 +8,20 @@ You better do not want it to use this in production.
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/GermaniaKG/PsrWebsites/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/GermaniaKG/PsrWebsites/?branch=master)
 
 
-##Requirements
+## Requirements
 
 - Germania KG's [Websites package](https://github.com/GermaniaKG/Websites)
 - Josh Lockhart's [Slim Framework](https://github.com/slimphp/Slim)
 
 
-##Installation
+## Installation
 
 ```bash
 $ composer require germania-kg/psr-websites
 ```
 
 
-##Development and Testing
+## Development and Testing
 
 Develop using `develop` branch, using [Git Flow](https://github.com/nvie/gitflow).   
 
