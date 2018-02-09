@@ -11,7 +11,7 @@ use Slim\Http\Request;
 use Slim\Route;
 use Prophecy\Argument;
 
-class WebsiteMiddlewareTest extends \PHPUnit_Framework_TestCase
+class WebsiteMiddlewareTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @dataProvider provideCtorArgs

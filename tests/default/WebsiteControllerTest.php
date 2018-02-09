@@ -8,7 +8,7 @@ use Slim\Http\Environment;
 use Slim\Http\Response;
 use Slim\Http\Request;
 
-class WebsiteControllerTest extends \PHPUnit_Framework_TestCase
+class WebsiteControllerTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
