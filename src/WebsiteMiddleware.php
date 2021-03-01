@@ -6,7 +6,7 @@ use Psr\Log\NullLogger;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Container\ContainerInterface;
-use Slim\Http\Body as ResponseBody;
+use Psr\Http\Message\StreamFactoryInterface;
 
 class WebsiteMiddleware
 {
@@ -36,6 +36,10 @@ class WebsiteMiddleware
      */
     public $logger;
 
+    /**
+     * @var StreamFactoryInterface
+     */
+    public $stream_factory;
 
 
 
@@ -52,9 +56,15 @@ class WebsiteMiddleware
         $this->render    = $render;
         $this->template  = $template;
         $this->defaults  = $defaults;
-
+        $this->setStreamFactory( new \Nyholm\Psr7\Factory\Psr17Factory() );
         $this->logger    = $logger ?: new NullLogger;
     }
+
+    public function setStreamFactory( StreamFactoryInterface $stream_factory ) 
+    {
+        $this->stream_factory = $stream_factory;
+    }
+
 
 
     /**
@@ -126,9 +136,8 @@ class WebsiteMiddleware
 
         $this->logger->debug("Finish page template render; write response");
 
-        $full_html_response_body = new ResponseBody(fopen('php://temp', 'r+'));
-        $full_html_response_body->write($rendered_result);
 
+        $full_html_response_body = $this->stream_factory->createStream($rendered_result);
 
         // ---------------------------------------
         // 6. Replace old Response Body with new one
