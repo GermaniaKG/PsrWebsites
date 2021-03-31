@@ -88,7 +88,7 @@ class WebsiteController
         endif;
 
         $logger->debug("Finish page content: result is string, write to response", $log_info);
-        $response->write( $content );
+        $response->getBody()->write( $content );
         return $response;
 	}
 }
