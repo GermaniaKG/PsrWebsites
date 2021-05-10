@@ -7,9 +7,12 @@ use Germania\Websites\WebsiteInterface;
 use Slim\Http\Environment;
 use Slim\Http\Response;
 use Slim\Http\Request;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class WebsiteControllerTest extends \PHPUnit\Framework\TestCase
 {
+
+    use ProphecyTrait;
 
     /**
      * @dataProvider provideCtorArgs
@@ -21,6 +24,7 @@ class WebsiteControllerTest extends \PHPUnit\Framework\TestCase
         };
 
         $sut = new WebsiteController($render, $defaults, $logger);
+        $this->assertIsCallable($sut);
     }
 
     /**
