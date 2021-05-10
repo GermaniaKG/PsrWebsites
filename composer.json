@@ -1,48 +1,52 @@
 {
-	"name":        "germania-kg/psr-websites",
+    "name": "germania-kg/psr-websites",
 
-	"type":        "library",
-	"license":     "MIT",
+    "type": "library",
+    "license": "MIT",
 
-	"authors": [
-		{
-			"name":  "Carsten Witt",
-			"email": "carstenwitt@germania-kg.de",
-			"role":  "Developer"
-		}
-	],
+    "authors": [{
+        "name": "Carsten Witt",
+        "email": "admin@germania-kg.com",
+        "role": "Developer"
+    }],
 
-	"autoload": {
-		"psr-4": {
-			"Germania\\PsrWebsites\\": "src/"
-		}
-	},
+    "autoload": {
+        "psr-4": {
+            "Germania\\PsrWebsites\\": "src/"
+        }
+    },
 
-	"autoload-dev": {
-		"psr-4": { "tests\\": "tests/default" }
-	},
+    "autoload-dev": {
+        "psr-4": {
+            "tests\\": "tests/default"
+        }
+    },
 
-	"require": {
-		"php": "^5.6|^7.0",
-		"germania-kg/websites": "^3.1|^4.0",
-		"psr/log": "^1.0",
-		"psr/http-message": "^1.0",
-		"psr/container": "^1.0",
-		"nyholm/psr7": "^1.4"
-	},
+    "require": {
+        "php": "^5.6|^7.0|^8.0",
+        "germania-kg/websites": "^3.1|^4.0",
+        "psr/log": "^1.0",
+        "psr/http-message": "^1.0",
+        "psr/container": "^1.0",
+        "nyholm/psr7": "^1.4"
+    },
 
     "require-dev": {
-		"slim/slim": "^3.5",
+        "slim/slim": "^3.5",
+        "phpunit/phpunit": "^9.0",
+        "phpspec/prophecy-phpunit": "^2.0",
         "php-coveralls/php-coveralls": "^2.0",
-        "phpunit/phpunit": "^5.7|^6.0|^7.0"
+        "friendsofphp/php-cs-fixer": "^2.0",
+        "spatie/phpunit-watcher": "^1.0",
+        "phpstan/phpstan": "^0.12"
     },
-    
+
     "scripts": {
-          "phpunit": "phpunit --colors=auto",
-  
-          "test": [
-              "@phpunit"
-          ]
+        "phpunit": "phpunit --colors=auto",
+
+        "test": [
+            "@phpunit"
+        ]
     }
 
 }

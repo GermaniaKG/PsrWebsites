@@ -10,9 +10,13 @@ use Slim\Http\Response;
 use Slim\Http\Request;
 use Slim\Route;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
+
 
 class WebsiteMiddlewareTest extends \PHPUnit\Framework\TestCase
 {
+    use ProphecyTrait;
+
     /**
      * @dataProvider provideCtorArgs
      */
@@ -36,6 +40,7 @@ class WebsiteMiddlewareTest extends \PHPUnit\Framework\TestCase
         };
 
         $sut = new WebsiteMiddleware($container, $render, $template, $defaults, $logger);
+        $this->assertIsCallable($sut);
     }
 
     /**
